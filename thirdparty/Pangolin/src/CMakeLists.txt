@@ -5,7 +5,7 @@ macro( append_glob list glob )
     file(GLOB files ${glob})
     set(${list} "${${list}};${files}")
 endmacro()
-
+add_definitions(-DHAVE_EIGEN)
 ## Header only includes / core headers
 set( INCDIR "../include/pangolin" )
 set( HEADERS
@@ -329,16 +329,17 @@ endif()
 
 option(BUILD_PANGOLIN_EIGEN "Build support for Eigen matrix types" ON)
 if(BUILD_PANGOLIN_EIGEN)
-  find_package(Eigen QUIET)
-  if(EIGEN_FOUND)
+  # find_package(Eigen QUIET)
+  # set(EIGEN_INCLUDE_DIR )
+  # if(EIGEN_FOUND)
     set(HAVE_EIGEN 1)
-    list(APPEND USER_INC  ${EIGEN_INCLUDE_DIR} )
+    list(APPEND USER_INC  ${PROJECT_SOURCE_DIR}/../eigen-3.3.7/include/eigen3 )
     if(_CLANG_)
       # Eigen causes many of these errors. Suppress.
       set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-register")
     endif()
     message(STATUS "Eigen Found and Enabled")
-  endif()
+  # endif()
 endif()
 
 option(BUILD_PANGOLIN_TOON "Build support for TooN matrix types" ON)

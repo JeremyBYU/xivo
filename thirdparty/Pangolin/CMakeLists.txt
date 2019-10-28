@@ -4,6 +4,9 @@ set(PANGOLIN_VERSION_MAJOR 0)
 set(PANGOLIN_VERSION_MINOR 5)
 set(PANGOLIN_VERSION ${PANGOLIN_VERSION_MAJOR}.${PANGOLIN_VERSION_MINOR})
 
+add_definitions(-DHAVE_EIGEN)
+include_directories(${PROJECT_SOURCE_DIR}/../eigen-3.3.7/include/eigen3)
+
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules/")
 
 # Platform configuration vars
