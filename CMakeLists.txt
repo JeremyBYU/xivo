@@ -33,7 +33,7 @@ add_definitions(-DGOOGLE_STRIP_LOG=1)
 # add_definitions(-DEIGEN_DEFAULT_TO_ROW_MAJOR)
 add_definitions(-DEIGEN_INITIALIZE_MATRICES_BY_ZERO)
 
-# find_package(OpenCV REQUIRED)
+find_package(OpenCV REQUIRED)
 
 link_directories(
         ${PROJECT_SOURCE_DIR}/lib
@@ -44,6 +44,7 @@ link_directories(
         ${PROJECT_SOURCE_DIR}/thirdparty/gperftools/lib
         /usr/lib/x86_64-linux-gnu
         /home/jeremy/miniconda3/envs/realsense/lib
+
 )
 
 
@@ -64,6 +65,7 @@ include_directories(
         /usr/include/suitesparse
         /usr/include
         /home/jeremy/miniconda3/envs/realsense/include
+        /usr/include/python3.6/
         # ${PROJECT_SOURCE_DIR}/thirdparty/libigl/include
 )
 
