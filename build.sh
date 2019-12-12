@@ -9,6 +9,7 @@
 # 3) gperf: use google performance profiling tools
 # Example:
 # ./build.sh ros g2o gperf
+sudo apt-get install --no-install-recommends -y libglew-dev liblz4-dev
 
 # parsing options
 BUILD_ROSNODE=false

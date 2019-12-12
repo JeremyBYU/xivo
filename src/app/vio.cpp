@@ -100,8 +100,8 @@ int main(int argc, char **argv) {
   } else {
     LOG(FATAL) << "failed to open output file @ " << FLAGS_out;
   }
-  // while (viewer) {
-  //   viewer->Refresh();
-  //   usleep(30);
-  // }
+  while (viewer) {
+    viewer->Refresh();
+    usleep(30);
+  }
 }
