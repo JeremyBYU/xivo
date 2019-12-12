@@ -5,6 +5,11 @@
 
 XIVO runs at 140FPS on stored data (here from a RealSense D435i sensor) or on live streams with latency of around 1-7ms, depending on the hardware. It takes as input video frames from a calibrated camera and inertial measurements from an IMU, and outputs a sparse point cloud with attribute features and 6 DOF pose of the camera. It performs auto-calibration of the relative pose between the camera and the IMU as well as the time-stamp alignment. More demos are available [here](demo.md), the aproach is described in this [paper][tsotsos_icra15]. XIVO does not perform post-mortem refinement (bundle adjustment, pose graph optimization), but that can be easily added as post-processing.
 
+```
+export DATAROOT=./data/
+./bin/vio -cfg cfg/vio.json -root $DATAROOT -seq 20191205_115956_noemitter -out out_state -dataset xivo
+```
+
 ## Overview
 
 XIVO is an open-source repository for visual-inertial odometry/mapping. It is a simplified version of Corvis \[[Jones *et al.*][jones_ijrr11],[Tsotsos *et al.*][tsotsos_icra15]\], designed for pedagogical purposes, and incorporates odometry (relative motion of the sensor platform), local mapping (pose relative to a reference frame of the oldest visible features), and global mapping (pose relative to a global frame, including loop-closure and global re-localization — this feature, present in Corvis, is not yet incorporated in XIVO).
