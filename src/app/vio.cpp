@@ -63,9 +63,9 @@ int main(int argc, char **argv) {
       if (verbose && i % 1000 == 0) {
         std::cout << i << "/" << loader->size() << std::endl;
       }
-
       if (auto msg = dynamic_cast<msg::Image *>(raw_msg)) {
         auto image = cv::imread(msg->image_path_);
+        // std::cout  << "Got Image" << std::endl; 
         est->VisualMeas(msg->ts_, image);
         if (viewer) {
           viewer->Update_gsb(est->gsb());
@@ -80,6 +80,7 @@ int main(int argc, char **argv) {
           }
         }
       } else if (auto msg = dynamic_cast<msg::IMU *>(raw_msg)) {
+        // std::cout << "Got IMU; GYRO: " <<  msg->gyro_(0,1) << ", " <<  msg->gyro_(1,1) << ", "  <<  msg->gyro_(2,1) << std::endl; 
         est->InertialMeas(msg->ts_, msg->gyro_, msg->accel_);
         // if (viewer) {
         //   viewer->Update_gsb(est->gsb());
@@ -100,8 +101,8 @@ int main(int argc, char **argv) {
   } else {
     LOG(FATAL) << "failed to open output file @ " << FLAGS_out;
   }
-  while (viewer) {
-    viewer->Refresh();
-    usleep(30);
-  }
+  // while (viewer) {
+  //   viewer->Refresh();
+  //   usleep(30);
+  // }
 }
