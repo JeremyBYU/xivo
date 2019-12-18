@@ -1,6 +1,7 @@
 // Author: Xiaohan Fei
 #include "unistd.h"
 #include <algorithm>
+#include <csignal>
 
 #include "gflags/gflags.h"
 #include "glog/logging.h"
@@ -26,9 +27,23 @@ DEFINE_string(out, "out_state", "Output file path.");
 
 using namespace xivo;
 
+bool waiting = true;
+
+void signalHandler( int signum ) {
+   std::cout << "Interrupt signal (" << signum << ") received.\n";
+
+   // cleanup and close up stuff here  
+   // terminate program  
+
+  waiting = false;
+}
+
+
+
 int main(int argc, char **argv) {
   google::InitGoogleLogging(argv[0]);
   gflags::ParseCommandLineFlags(&argc, &argv, true);
+  signal(SIGINT, signalHandler); 
 
   auto cfg = LoadJson(FLAGS_cfg);
   bool verbose = cfg.get("verbose", false).asBool();
@@ -51,7 +66,6 @@ int main(int argc, char **argv) {
     viewer = std::make_unique<Viewer>(
         LoadJson(cfg["viewer_cfg"].asString()), FLAGS_seq);
   }
-
   // setup I/O for saving results
   if (std::ofstream ostream{FLAGS_out, std::ios::out}) {
 
@@ -95,14 +109,19 @@ int main(int argc, char **argv) {
         << est->gsb().translation().transpose() << " "
         << est->gsb().rotation().log().transpose() << std::endl;
 
+      if (!waiting)
+      {
+        break;
+      }
+
       // std::this_thread::sleep_for(std::chrono::milliseconds(3));
 
     }
   } else {
     LOG(FATAL) << "failed to open output file @ " << FLAGS_out;
   }
-  // while (viewer) {
-  //   viewer->Refresh();
-  //   usleep(30);
-  // }
+  while (viewer && waiting) {
+    viewer->Refresh();
+    usleep(30);
+  }
 }

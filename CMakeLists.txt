@@ -28,7 +28,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
 
 # disable logging whose severity level is below the given integer
-add_definitions(-DGOOGLE_STRIP_LOG=1)
+add_definitions(-DGOOGLE_STRIP_LOG=0)
 
 # add_definitions(-DEIGEN_DEFAULT_TO_ROW_MAJOR)
 add_definitions(-DEIGEN_INITIALIZE_MATRICES_BY_ZERO)

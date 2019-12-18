@@ -7,7 +7,7 @@ XIVO runs at 140FPS on stored data (here from a RealSense D435i sensor) or on li
 
 ```
 export DATAROOT=./data/
-./bin/vio -cfg cfg/vio.json -root $DATAROOT -seq 20191205_115956_noemitter -out out_state -dataset xivo
+./bin/vio -cfg cfg/vio_rs.json -root $DATAROOT -seq 20191205_115956_noemitter -out out_state -dataset xivo
 ```
 
 ## Overview
