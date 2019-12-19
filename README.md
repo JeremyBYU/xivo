@@ -10,6 +10,29 @@ export DATAROOT=./data/
 ./bin/vio -cfg cfg/vio_rs.json -root $DATAROOT -seq 20191205_115956_noemitter -out out_state -dataset xivo
 ```
 
+
+```
+{
+	"class_name" : "ViewTrajectory",
+	"interval" : 29,
+	"is_loop" : false,
+	"trajectory" : 
+	[
+		{
+			"boundingbox_max" : [ 0.5, 0.5, 0.10000000000000002 ],
+			"boundingbox_min" : [ -0.5, -0.5, -0.0060000000000000001 ],
+			"field_of_view" : 60.0,
+			"front" : [ -0.015506726813603334, -0.031945860148826812, -0.99936930283198111 ],
+			"lookat" : [ 0.0, 0.0, 0.047000000000000007 ],
+			"up" : [ 0.013476727508934888, -0.9994053649295116, 0.031737901092540897 ],
+			"zoom" : 0.23999999999999957
+		}
+	],
+	"version_major" : 1,
+	"version_minor" : 0
+}
+```
+
 ## Overview
 
 XIVO is an open-source repository for visual-inertial odometry/mapping. It is a simplified version of Corvis \[[Jones *et al.*][jones_ijrr11],[Tsotsos *et al.*][tsotsos_icra15]\], designed for pedagogical purposes, and incorporates odometry (relative motion of the sensor platform), local mapping (pose relative to a reference frame of the oldest visible features), and global mapping (pose relative to a global frame, including loop-closure and global re-localization — this feature, present in Corvis, is not yet incorporated in XIVO).

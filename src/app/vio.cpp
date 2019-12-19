@@ -22,10 +22,10 @@ DEFINE_string(cfg, "cfg/vio.json",
               "Configuration file for the VIO application.");
 DEFINE_string(root, "/home/feixh/Data/tumvi/exported/euroc/512_16/",
               "Root directory containing tumvi dataset folder.");
-DEFINE_string(dataset, "tumvi", "xivo | euroc | tumvi");
+DEFINE_string(dataset, "xivo", "xivo | euroc | tumvi");
 DEFINE_string(seq, "room1", "Sequence of TUM VI benchmark to play with.");
 DEFINE_int32(cam_id, 0, "Camera id.");
-DEFINE_string(out, "out_state", "Output file path.");
+DEFINE_string(out, "map/out_state", "Output file path.");
 DEFINE_bool(wait_keypress, false, "Wait for keypress");
 
 using namespace xivo;

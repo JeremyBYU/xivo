@@ -1055,6 +1055,8 @@ void Estimator::DumpMap() {
 
   // Retrieve visibility graph
   Graph& graph{*Graph::instance()};
+  Estimator& est{*Estimator::instance()};
+  auto time_index = est.curr_vision_time_.count();
 
   // Get vectors of instate features and all features
   std::vector<xivo::FeaturePtr> instate_features = graph.GetFeaturesIf(
@@ -1071,10 +1073,10 @@ void Estimator::DumpMap() {
             Criteria::CandidateComparison);
   
   // Print out instate features
-  std::string instate_features_filename = "instate_features_" + 
-        std::to_string(vision_counter_) + ".txt";
+  std::string instate_features_filename = "map/instate_features_" + 
+        std::to_string(time_index) + ".txt";
   std::string all_features_filename = 
-    "all_features_" + std::to_string(vision_counter_) + ".txt";
+    "map/all_features_" + std::to_string(time_index) + ".txt";
   std::ofstream instate_stream;
   std::ofstream allfeatures_stream;
   instate_stream.open(instate_features_filename);

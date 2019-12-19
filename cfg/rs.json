@@ -46,7 +46,7 @@
 
   // dumping out map at each frame
   "mapdump": {
-    "dump_map": false,
+    "dump_map": true,
     "max_num_instate": 100,
     "max_total": 1500
   },
