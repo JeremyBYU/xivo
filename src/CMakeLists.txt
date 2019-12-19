@@ -11,8 +11,8 @@ project(estimator)
 
 # if set, perform online temporal calibration
 add_definitions(-DUSE_ONLINE_IMU_CALIB)
-add_definitions(-DUSE_ONLINE_TEMPORAL_CALIB)
-add_definitions(-DUSE_ONLINE_CAMERA_CALIB)
+# add_definitions(-DUSE_ONLINE_TEMPORAL_CALIB)
+# add_definitions(-DUSE_ONLINE_CAMERA_CALIB)
 
 # if set, approximate the initial correlation between feature state and
 # group state with Hessian from depth refinement optimization.
