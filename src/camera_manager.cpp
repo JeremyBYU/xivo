@@ -34,7 +34,11 @@ CameraManager::CameraManager(const Json::Value &cfg) : model_{Unknown{}} {
                       k0123[0], k0123[1], k0123[2], k0123[3], max_iter};
     dim_ = EquiDist::DIM;
   } else if (cam_model == "radtan") {
-    throw std::runtime_error("Radial-Tangential Model NOT implemented");
+    auto p01k012 = GetVectorFromJson<number_t, 4>(cfg, "p01k012");
+    model_ = RadTan{rows, cols, fx, fy, cx, cy,
+                          p01k012[0], p01k012[1], p01k012[2], p01k012[3], p01k012[4]};
+    dim_ = RadTan::DIM;
+    // throw std::runtime_error("Radial-Tangential Model NOT implemented");
   } else if (cam_model == "pinhole") {
     model_ = Pinhole{rows, cols, fx, fy, cx, cy};
     dim_ = Pinhole::DIM;

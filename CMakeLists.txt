@@ -43,7 +43,7 @@ link_directories(
         ${PROJECT_SOURCE_DIR}/thirdparty/jsoncpp/lib
         ${PROJECT_SOURCE_DIR}/thirdparty/gperftools/lib
         /usr/lib/x86_64-linux-gnu
-        /home/jeremy/miniconda3/envs/realsense/lib
+        # /home/jeremy/miniconda3/envs/realsense/lib
 
 )
 
@@ -64,7 +64,7 @@ include_directories(
         /usr/include/opencv2
         /usr/include/suitesparse
         /usr/include
-        /home/jeremy/miniconda3/envs/realsense/include
+        # /home/jeremy/miniconda3/envs/realsense/include
         /usr/include/python3.6/
         # ${PROJECT_SOURCE_DIR}/thirdparty/libigl/include
 )

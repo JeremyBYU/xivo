@@ -2,6 +2,8 @@
 #include "unistd.h"
 #include <algorithm>
 #include <csignal>
+#include <thread>
+#include <future>
 
 #include "gflags/gflags.h"
 #include "glog/logging.h"
@@ -24,8 +26,10 @@ DEFINE_string(dataset, "tumvi", "xivo | euroc | tumvi");
 DEFINE_string(seq, "room1", "Sequence of TUM VI benchmark to play with.");
 DEFINE_int32(cam_id, 0, "Camera id.");
 DEFINE_string(out, "out_state", "Output file path.");
+DEFINE_bool(wait_keypress, false, "Wait for keypress");
 
 using namespace xivo;
+using namespace std::literals;
 
 bool waiting = true;
 
@@ -91,6 +95,23 @@ int main(int argc, char **argv) {
             LOG(INFO) << "Display image is ready";
             viewer->Update(disp);
             viewer->Refresh();
+          }
+
+          if (FLAGS_wait_keypress)
+          {
+              // Execute lambda asyncronously.
+              auto f = std::async(std::launch::async, [] {
+                  char temp = 'x';
+                  std::cin.ignore();
+                  if (std::cin.get(temp)) return temp;
+              });
+
+              // Continue execution in main thread.
+              while(f.wait_for(30ms) != std::future_status::ready && waiting) {
+                  // std::cout << "still waiting..." <<  waiting << std::endl;
+                  viewer->Update(disp);
+                  viewer->Refresh();
+              }
           }
         }
       } else if (auto msg = dynamic_cast<msg::IMU *>(raw_msg)) {
