@@ -120,7 +120,7 @@
   // noise for gyro and accel measurements and bias?
   "Qimu": {
     "gyro": 0.01,
-    "gyro_bias": 0.0001,
+    "gyro_bias": 0.0005,
     "accel":0.10,
     "accel_bias": 0.01
   },
@@ -204,6 +204,8 @@
     // distortion coefficients:  [ 0.04689492 -0.07320098  0.00044839 -0.00246888  0.04042993]
     // k1,k2,p1,p2,k3
   },
+
+  // [fx, fy, cx, cy]=[378.697,379.231,318.329,238.912][p1, p2]=[0.000794354,-0.00552183][k0, k1, k2]=[0.0413188,-0.0619471,0.01853]
 
   // "camera_cfg": {
   //   "model": "pinhole",
